@@ -1,7 +1,7 @@
 import { SignInButton, SignUpButton, SignedOut, UserButton } from "@clerk/nextjs"
 import Image from "next/image"
 import Link from "next/link"
-import { ThemeToggle } from "./ui/ThemeToggle"
+import { ThemeToggle } from "./ThemeToggle"
 
 function Header() {
   return (
