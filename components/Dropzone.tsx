@@ -13,8 +13,8 @@ function Dropzone() {
   const onDrop = (acceptedFiles: File[]) => {
     acceptedFiles.forEach((file) => {
       const reader = new FileReader()
-      reader.onabort = () => console.log("aborted")
-      reader.onerror = () => console.log("failed")
+      // reader.onabort = () => console.log("aborted")
+      // reader.onerror = () => console.log("failed")
       reader.onload = async () => {
         await uploadPost(file)
       }
