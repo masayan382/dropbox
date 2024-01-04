@@ -1,0 +1,16 @@
+export const COLOR_EXTENSION_MAP: { [key: string]: string } = {
+  pdf: "#0160FE",
+  doc: "#2b579a",
+  xlsx: "#217346",
+  jpeg: "#d4af37",
+  jpg: "#d4af37",
+  png: "#4FB6F4",
+  gif: "#d4af37",
+  txt: "#000",
+  zip: "#000",
+  mp3: "#000",
+  mp4: "#000",
+  mov: "#000",
+  psd: "#000",
+  ai: "#000",
+}
