@@ -1,16 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { db, storage } from "@/firebase"
 import { useAppStore } from "@/store/store"
 import { useUser } from "@clerk/nextjs"
@@ -27,7 +18,6 @@ export function DeleteModal() {
   ])
   async function deleteFile() {
     if (!user || !fileId) return
-
     const fileRef = ref(storage, `users/${user.id}/files/${fileId}`)
 
     try {
