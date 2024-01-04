@@ -7,6 +7,7 @@ import { useAppStore } from "@/store/store"
 import { useUser } from "@clerk/nextjs"
 import { deleteDoc, doc } from "firebase/firestore"
 import { deleteObject, ref } from "firebase/storage"
+import toast from "react-hot-toast"
 
 export function DeleteModal() {
   const { user } = useUser()
@@ -18,22 +19,29 @@ export function DeleteModal() {
   ])
   async function deleteFile() {
     if (!user || !fileId) return
+
+    const toastId = toast.loading("Deleting...")
+
     const fileRef = ref(storage, `users/${user.id}/files/${fileId}`)
 
     try {
       deleteObject(fileRef)
         .then(async () => {
-          console.log("delete")
           deleteDoc(doc(db, "users", user.id, "files", fileId)).then(() => {
-            console.log("delete")
+            toast.success("Deleted Successfully", {
+              id: toastId,
+            })
           })
         })
         .finally(() => {
           setIsDeleteModalOpen(false)
         })
     } catch (error) {
-      console.log(error)
       setIsDeleteModalOpen(false)
+
+      toast.success("Error deleting document", {
+        id: toastId,
+      })
     }
   }
   return (
@@ -53,7 +61,7 @@ export function DeleteModal() {
             <span className="sr-only">Cancel</span>
             <span>Cancel</span>
           </Button>
-          <Button type="submit" size="sm" className="px-3 flex-1" onClick={() => deleteFile()}>
+          <Button type="submit" size="sm" variant={"destructive"} className="px-3 flex-1" onClick={() => deleteFile()}>
             <span className="sr-only">Delete</span>
             <span>Delete</span>
           </Button>
